@@ -1,3 +1,4 @@
+import React from 'react';
 import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import StateCounter from '../components/useState';
 import EffectColorChange from '../components/useEffect';
