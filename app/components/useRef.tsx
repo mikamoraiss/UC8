@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 export default function RefInputFocus() {
   const [seconds, setSeconds] = useState(0);
-  const timerRef = useRef<NodeJS.Timer | null>(null);
+
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const start = () => {
     if (!timerRef.current) {
@@ -31,24 +32,15 @@ export default function RefInputFocus() {
       <Text style={{ fontSize: 24, marginBottom: 10 }}>⏱️ {seconds} segundo(s)</Text>
 
       <View style={{ flexDirection: 'row', gap: 10 }}>
-        <TouchableOpacity
-          onPress={start}
-          style={buttonStyle}
-        >
+        <TouchableOpacity onPress={start} style={buttonStyle}>
           <Text style={buttonTextStyle}>Iniciar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={stop}
-          style={buttonStyle}
-        >
+        <TouchableOpacity onPress={stop} style={buttonStyle}>
           <Text style={buttonTextStyle}>Parar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={reset}
-          style={buttonStyle}
-        >
+        <TouchableOpacity onPress={reset} style={buttonStyle}>
           <Text style={buttonTextStyle}>Resetar</Text>
         </TouchableOpacity>
       </View>
@@ -61,10 +53,10 @@ const buttonStyle = {
   paddingVertical: 10,
   paddingHorizontal: 15,
   borderRadius: 5,
-  alignItems: 'center',
+  alignItems: 'center' as const, 
   minWidth: 70,
 };
 
 const buttonTextStyle = {
-  fontWeight: 'bold',
+  fontWeight: 'bold' as const,
 };
